@@ -1,0 +1,178 @@
+---
+layout: post
+title: "Compiler, compiling process and C#"
+date: 2015-05-22 22:27:14 +0300
+comments: true
+categories: [C#, CLR, .NET]
+---
+
+Its my first post in cycle of articles about C# and .NET framework. 
+And i want start from begging of all it – from process of compiling  into .NET. So lets start.
+
+The compiler
+---------
+
+Programs are the most complicated engineering artifacts known. A compiler is a special type of program. It validates. It optimizes. It transforms.<!--more-->Compilers teach us how to solve complex programs. The C# compiler compiles the C# source code into the module, which is finally converted into the assembly.  The assembly contains the Intermediate Language (IL) code along with the metadata information about the assembly. The common language runtime (CLR) works with the assembly. It loads the assembly and converts it into the native code to execute the assembly. Then this native code is executed by the Operating system and the output will shows according to your requirement. All of this stuff used basic theory of compilers.
+
+![Compiler](https://lischuk.files.wordpress.com/2015/03/compilling.png?w=620)
+
+Compiler phases 
+----------
+
+Let walk through some compiler phases. These are used the C# compiler system and the .NET Framework. When you compile a C# program in Visual Studio, the csc.exe program is invoked on the program text. Some of them are very interesting and you can find some more complicated information about it in [Google](www.google.com).
+
+### - Metadata
+
+A C# program is compiled into a relational database (metadata). The metadata is an abstract binary representation. It is an efficient encoding of the program. But it is not easy to read by humans.The metadata is stored on the disk. It contains no comments from your source code. **The metadata is divided into tables.** These tables contain records that point to different tables and different records. It is not typically important to study the metadata format unless you are writing a compiler.
+
+### - Definite assignment
+
+The C# compiler uses definite assignment analysis. It proves that variables are not used before they are initialized. This step reduces the number of security problems and bugs in C# programs. Definite assignment analysis ensures higher program quality because the programs are tested more at compile-time.
+
+### - Overloads
+
+The C# compiler applies inferential logic at compile-time. This has no penalty at execution. It finds the best overloaded method based on its parameters. The parameter types too are considered. Overloaded methods can be used as a performance optimization. No runtime penalty is caused by using them.
+
+### - Numbers
+
+At the C# compilation stage, number transformations are applied. Numbers are “promoted” to larger representations to enable compilation with certain operators. And some casts not present in the program text are added.
+
+### - If, Constants and Strings
+
+The compiler uses node-based logic to rearrange conditional statements and loops, which both use jump instructions. Code often will be compiled to use branch instructions that do not reflect exactly the source text. For example, the C# compiler will change while-loops into the same thing as certain for-loops. It has sophisticated logic, presumably based on graph theory, to transform your loops and nested expressions into efficient representations. In compiler theory, some levels of indirection can be eliminated by actually injecting the constant values into the representation of the program directly. This is termed constant folding. String literals are pooled together. And constant references to the stream of string data in the compiled program are placed where you used the literals. So the literals themselves are not located where you use them in methods.
+
+This program shows that the two string literals, declared separately, are actually the same string reference.
+
+```
+using System;
+ 
+class Program
+{
+    static void Main()
+    {
+    string first = "Python";
+    string second = "Python";
+    Console.WriteLine(string.ReferenceEquals(first, second));
+    }
+}
+Output: true
+``` 
+### - Methods
+
+Structural programming represents logic as procedure calls. It uses methods. In the metadata, method bodies omit the names of their local variables. This information is lost as compile-time. But parameter names are retained.
+
+### - Runtime
+
+A high-level C# program is translated into a relational database called metadata. The Common Language Runtime (CLR) executes this metadata. This incurs some overhead. Startup time is affected. As you run the program, each method is read from the metadata. Intermediate language code is translated into machine-level code. **In just-in-time compilation**, the CLR applies many optimizations to the methods. It sometimes (based on heuristics) inserts the methods at their call sites. This optimization is called function inlining. It rewrites instruction layouts in memory to eliminate unnecessary indirections. Each pointer dereference costs time. By removing this dereference, fewer instructions (and clock cycles) are needed.
+
+The JIT system causes a slowdown when first used. It is most beneficial on long-running programs.
+
+### - Induction
+
+Compilers can apply many optimizations. But sometimes applying them manually is more effective. Code motion moves code outside of a loop. And induction variables are used to analyze data dependencies.You can model the accesses of the array with vector sets. This tells you how the data accesses depend on each other.
+
+```csharp
+using System;
+ 
+class Program
+{
+    static void Main()
+    {
+    int[] array = new int[10];
+    array[0] = 1;
+    array[9] = 1;
+    for (int i = 0; i < 10; i++)
+    {
+        int val = array[i];
+        Console.WriteLine("{0} {1}", i, val );
+    }
+    }
+}
+Output:
+0 1 
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+7 0
+8 0
+9 1
+```
+An affine expression is one that is based on the induction variable in a loop. The array access in this program would multiply the induction variable by 4, which is the byte size of an integer.A compiler optimization could apply strength reduction to translate this multiplication into a series of adds.
+
+In compiler theory, arrays are heavily focused on for optimization opportunities as they are so frequently used.
+
+### - Code motion
+
+Code motion is a machine-independent optimization. It can reduce the amount of work done in loops. By moving code outside of loops that are not dependent on the iteration—called loop-invariant computations—we optimize performance. First:This example program introduces two methods: Method1 and Method2. It benchmarks these two methods. Note:In Method1, a statement is inside the loop. In Method2, that same statement is pulled out of the loop (hoisted).
+
+**Tip**:The important point is that the statement does not depend on the induction variable in the loop (i).
+```
+using System;
+using System.Diagnostics;
+ 
+class Program
+{
+    const int max = 100000;
+    static void Main()
+    {
+    Console.WriteLine(Method1());
+    Console.WriteLine(Method2());
+ 
+    var s1 = Stopwatch.StartNew();
+    for (int i = 0; i < max; i++)
+    {
+        Method1();
+    }
+    s1.Stop();
+    var s2 = Stopwatch.StartNew();
+    for (int i = 0; i < max; i++)
+    {
+        Method2();
+    }
+    s2.Stop();
+    Console.WriteLine(((double)(s1.Elapsed.TotalMilliseconds * 1000 * 1000) /max).ToString("0.00 ns"));
+    Console.WriteLine(((double)(s2.Elapsed.TotalMilliseconds * 1000 * 1000) /max).ToString("0.00 ns"));
+    Console.Read();
+    }
+ 
+    static string Method1()
+    {
+    int i;
+    string value = null;
+    for (i = 0; i < 100; i++)
+    {
+        value = "abc" + 5.ToString();
+    }
+    return value + i.ToString();
+    }
+ 
+    static string Method2()
+    {
+    int i;
+    string value = null;
+    value = "abc" + 5.ToString();
+    for (i = 0; i < 100; i++)
+    {
+    }
+    return value + i.ToString();
+    }
+}
+```
+**Results:** abc5100 abc5100 11324.32 ns 484.68 ns. *In this program*, we can see that pulling the loop-invariant statement out of the loop resulted in a dramatic performance increase. The results also show that both methods produce the same result.
+
+Most interesting is that the compiler did not perform this optimization itself. With the C# language, you must do this by hand.
+
+Code motion can be performed by a compiler. But the compiler in the .NET Framework 4.0 misses opportunities for this optimization.
+
+### - Optimization
+
+The best way to compile a program is “undecidable.” So no program can truly be considered optimal. But as programmers, trying to improve performance of critical paths is worth the effort.
+
+JIT:In this form of compilation, methods are compiled as they are accessed by a program’s control flow.
+
+Summary
+-------
+Compilers are complicated. They use an elaborate series of phases to transform program source.
