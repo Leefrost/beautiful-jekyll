@@ -45,7 +45,7 @@ At the time of launching the web application developer configure a chain of work
 
 It may seem that new application required a lot of code. Besides, we need a presentation of OWIN for target server. Here comes to help Katana project.
 
-##Katana
+## Katana
 Katana is a realization of OWIN specification, which:
 
  * Helped us to work with our app in such way as for IIS.
