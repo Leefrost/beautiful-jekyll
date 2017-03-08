@@ -1,16 +1,32 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: Welcome to my blog
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+This page is intended to give you a crash course on me and answer any common questions.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+## About me
 
-What else do you need?
+I am Sergii Lischuk (a.k.a Leefrost_). The person behind Codestory. This is the place for my rumblings about technology. It usually boils down to .Net, C#, ASP.NET MVC, Javascript, Python and other topics.
 
-### my history
+## Skills
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### _Technical_
+
+- Worked on C#/Asp.NET MVC projects in a professional role and on personal projects.
+- Developed for the web with Python (Django), Javascript (Node.js) and C# for Microsoft’s MVC Web Framework.
+- Experience with Java on University projects.
+- Experience with SQL, Postgres, Redis and MongoDB.
+- Interest in big data, data science, computer security issues.
+- Basic knowledge, and interest in penetration testing and malware analysis.
+- Experience with good software design practices.
+- Experience using version control including Git and Subversion.
+
+### _Non-technical_
+
+- Experience with project management tools, bug tracking and testing feedback.
+- Experience with code reviews.
+- Good written and spoken communication.
+- Great time management.
+- Always learning.
