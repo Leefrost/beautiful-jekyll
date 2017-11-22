@@ -2,7 +2,11 @@
 layout: post
 published: true
 title: The future of the Web. WebAssembly
-image: '{{site.baseurl}}/img/WebAssembly.jpg'
+image: img/WebAssembly.jpg
+tags:
+  - WebAssembly
+  - Js
+  - Web
 ---
 ![WebAssembly]({{site.baseurl}}/img/WebAssembly.jpg)
 
