@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: The future of the Web. WebAssembly
-image: img/WebAssembly.jpg
+image: /img/WebAssembly.jpg
 tags:
   - WebAssembly
   - Js
