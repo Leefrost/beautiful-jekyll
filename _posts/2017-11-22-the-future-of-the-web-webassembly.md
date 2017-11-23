@@ -6,9 +6,11 @@ tags:
   - WebAssembly
   - Js
   - Web
-bigimg: /img/WebAssembly.jpg
+bigimg: img/webassembly-native.png
 subtitle: What? Why? How?
 ---
+Today is very important to work with the information in fast and understandable manner. If in case of desktop application situation is fine with it, in case of Web we get some troubles - all data are under control of JS, which is fast but not in the top of performance charts. Here, on the scene, we meet WebAssembly.
+
 ## The future is coming 
 
 Evolution is everywhere. Even in web stack, there are changes which were made to update the current status of development up to the new edge. We are involved in this process not only as spectators but as essential parts - we got async/await, promises, iterators, etc. Now, from March 2017 (for Chrome) we can use WebAssembly directly in our web apps. But let's start from the beginning - why, what and where are our best friends in our way of WebAssembly ambassadors.
