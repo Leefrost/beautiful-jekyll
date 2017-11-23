@@ -2,11 +2,12 @@
 layout: post
 published: true
 title: The future of the Web. WebAssembly
-image: /img/WebAssembly.jpg
 tags:
   - WebAssembly
   - Js
   - Web
+bigimg: /img/WebAssembly.jpg
+subtitle: What? Why? How?
 ---
 ## The future is coming 
 
