@@ -45,4 +45,3 @@ WASM is aimed to fix troubles, described above:
 - Security. Run in the sandbox.
 - Open standard. Was accepted in 2017
 - Debug is supporting natively in browsers.
-
