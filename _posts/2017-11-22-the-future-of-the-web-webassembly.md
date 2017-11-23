@@ -6,7 +6,7 @@ tags:
   - WebAssembly
   - Js
   - Web
-bigimg: img/webassembly-native.png
+bigimg: /img/webassembly-native.png
 subtitle: What? Why? How?
 ---
 Today is very important to work with the information in fast and understandable manner. If in case of desktop application situation is fine with it, in case of Web we get some troubles - all data are under control of JS, which is fast but not in the top of performance charts. Here, on the scene, we meet WebAssembly.
