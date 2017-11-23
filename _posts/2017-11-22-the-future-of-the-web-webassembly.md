@@ -8,8 +8,6 @@ tags:
   - Js
   - Web
 ---
-![WebAssembly]({{site.baseurl}}/img/WebAssembly.jpg)
-
 ## The future is coming 
 
 Evolution is everywhere. Even in web stack, there are changes which were made to update the current status of development up to the new edge. We are involved in this process not only as spectators but as essential parts - we got async/await, promises, iterators, etc. Now, from March 2017 (for Chrome) we can use WebAssembly directly in our web apps. But let's start from the beginning - why, what and where are our best friends in our way of WebAssembly ambassadors.
