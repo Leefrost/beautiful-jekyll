@@ -15,7 +15,6 @@ Code coverage lets you run your web app, and for each JS/CSS file, see which lin
 
 ![Coverage diagram for simple site in AGN cli]({{site.baseurl}}/img/CodeCoverage.png){: .center-block }
 
-
 Here I run a simple page which used Angular CLI start up and recorded first 5 seconds. Red lines show a code which didn't executed during this period, green ones - code which executed in pipeline. 
 
 Code coverage works like a typical timeline in dev tools - you just need to press a record button and make some actions with your site. After you finish all you work you should press stop button and chrome will take some time to make some calculation and will show data. For example you can check which CSS code is unused in your site or which js just take some traffic but does not work in production
