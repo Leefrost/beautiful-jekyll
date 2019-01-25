@@ -13,7 +13,7 @@ Code coverage is a new feature in Chrome Dev Tools (currently available in Canar
 
 Code coverage lets you run your web app, and for each JS/CSS file, see which lines of code ran and which didn't.
 
-![Coverage diagram for simple site in AGN cli]({{site.baseurl}}/img/CodeCoverage.png)
+![Coverage diagram for simple site in AGN cli]({{site.baseurl}}/img/CodeCoverage.png){: .center-block }
 
 
 Here I run a simple page which used Angular CLI start up and recorded first 5 seconds. Red lines show a code which didn't executed during this period, green ones - code which executed in pipeline. 
@@ -30,4 +30,3 @@ Large projects during development accumulate a dead code. If you use Webpack or 
 
 - Useful tips and tricks with dev tools: https://blog.logrocket.com/making-the-most-of-the-chrome-developer-tools-8cac9a206979
 - Visualization of backend performance in Chrome DEV Tools: https://blog.logrocket.com/visualizing-backend-performance-in-the-chrome-devtools-bb6fd232540
-
