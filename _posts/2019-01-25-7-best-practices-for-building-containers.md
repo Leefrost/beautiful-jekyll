@@ -2,7 +2,13 @@
 layout: post
 published: true
 title: 7 best practices for building containers
+subtitle: My notes about "best practices in dockerization"
+tags:
+  - docker
+bigimg: /img/docker-cover.png
 ---
+Development was always a way of evolution. The evolution of modern programming development brings a lot of techniques and requirements - its hard to imagine today's programming without high-level frameworks, containers, cloud computing or special data storages (even if they are not necessary). Working with some of them, I would like to share small notes about the containerization, especially with Docker containers. 
+
 ## 7 best practices for building containers
 
 Kubernetes Engine is a great place to run your workloads at scale. But before being able to use Kubernetes, you need to containerize your applications. You can run most applications in a Docker container without too much hassle. However, effectively running those containers in production and streamlining the build process is another story. There are a number of things to watch out for that will make your security and operations teams happier. This post provides tips and best practices to help you effectively build containers.
